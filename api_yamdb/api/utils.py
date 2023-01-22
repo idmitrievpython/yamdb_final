@@ -1,6 +1,7 @@
-from api_yamdb.settings import ADMIN_EMAIL
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
+
+from api_yamdb.settings import ADMIN_EMAIL
 
 
 def send_code(user):
