@@ -87,10 +87,6 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         stack_file_name: docker-compose.yaml
         script: |
-          sudo apt update
-          sudo apt upgrade
-          sudo apt install docker-compose
-          sudo docker pull ilyapython/yamdb_api:yamdb_api
           sudo docker-compose stop
           sudo docker-compose rm web
           sudo docker-compose up -d --build
