@@ -1,21 +1,23 @@
-from django.db.models import Avg
 from django.contrib.auth.tokens import default_token_generator
+from django.db.models import Avg
 from django.shortcuts import get_object_or_404
-from rest_framework import filters, status, viewsets, mixins
+from rest_framework import filters, mixins, status, viewsets
 from rest_framework.decorators import action, api_view, permission_classes
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.pagination import PageNumberPagination
 
-from reviews.models import User, Categories, Title, Review, Genre
-from .permissions import (IsAdminOrReadOnly, IsRoleAdmin,
-                          IsAdminOrModeratorOrAuthorOrReadOnly)
-from .serializers import (AdminUserSerializer, CategoriesSerializer,
-                          GenreSerializer, ReviewsSerializer, SignupSerializer,
-                          TokenSerializer, UserSerializer, TitlesSerializer,
-                          TitlesReadSerializer, CommentsSerializer)
+from reviews.models import Categories, Genre, Review, Title, User
+
 from .filters import SlugFilter
+from .permissions import (IsAdminOrModeratorOrAuthorOrReadOnly,
+                          IsAdminOrReadOnly, IsRoleAdmin)
+from .serializers import (AdminUserSerializer, CategoriesSerializer,
+                          CommentsSerializer, GenreSerializer,
+                          ReviewsSerializer, SignupSerializer,
+                          TitlesReadSerializer, TitlesSerializer,
+                          TokenSerializer, UserSerializer)
 from .utils import send_code
 
 
