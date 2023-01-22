@@ -9,7 +9,9 @@ services:
     env_file:
       - ./.env
   web:
-    build: ilyapython/yamdb_api:yamdb_api
+    image:
+      ilyapython/yamdb_api:yamdb_api
+    build: .
     restart: always
 
     volumes:
