@@ -126,6 +126,12 @@ docker-compose down -v --remove-orphans
 
 ## Документация API YaMDb
 Документация доступна по эндпойнту: http://localhost/redoc/
+- Основные эндпоинты API
+```bash
+http://127.0.0.1:8000/api/v1/categories/
+http://127.0.0.1:8000/api/v1/genres/
+http://127.0.0.1:8000/api/v1/titles/
+```
 ## Open Source License
 GPL v3 (can check in gpl-3.0.md file)
 
