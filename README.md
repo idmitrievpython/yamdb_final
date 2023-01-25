@@ -128,9 +128,9 @@ docker-compose down -v --remove-orphans
 Документация доступна по эндпойнту: http://localhost/redoc/
 ## Для тестирования можно обратиться по URL:
 ```bash
-http://127.0.0.1/api/v1/categories/
-http://127.0.0.1/api/v1/genres/
-http://127.0.0.1/api/v1/titles/
+http://158.160.22.164/api/v1/categories/
+http://158.160.22.164/api/v1/genres/
+http://158.160.22.164/api/v1/titles/
 ```
 ## Open Source License
 GPL v3 (can check in gpl-3.0.md file)
