@@ -72,9 +72,7 @@ class GenreViewSet(AdminOrReadOnlyViewSet):
 
 
 class TitleViewSet(viewsets.ModelViewSet):
-    queryset = (
-        Title.objects.annotate(rating=Avg('reviews__score')).order_by('id')
-    )
+    queryset = Title.objects.all()
     serializer_class = TitlesSerializer
     permission_classes = (IsAdminOrReadOnly,)
     pagination_class = PageNumberPagination
@@ -84,9 +82,9 @@ class TitleViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         """Выбор сериалайзера в зависимости от действия."""
-        if self.request.method == 'GET':
-            return TitlesReadSerializer
-        return TitlesSerializer
+        if self.action in ['create', 'update', 'partial_update']:
+            return TitlesSerializer
+        return TitlesReadSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
