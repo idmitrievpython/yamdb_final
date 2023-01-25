@@ -1,0 +1,1387 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/v1/users/:
+    get:
+      operationId: listUsers
+      description: ''
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AdminUser'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+      tags:
+      - api
+  /api/v1/users/me/:
+    get:
+      operationId: meUser
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: meUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+      tags:
+      - api
+  /api/v1/users/{username}/:
+    get:
+      operationId: retrieveUser
+      description: ''
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateUser
+      description: ''
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateUser
+      description: ''
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyUser
+      description: ''
+      parameters:
+      - name: username
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/categories/:
+    get:
+      operationId: listCategories
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Categories'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createCategories
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Categories'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Categories'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Categories'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categories'
+          description: ''
+      tags:
+      - api
+  /api/v1/titles/:
+    get:
+      operationId: listTitles
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: genre
+        required: false
+        in: query
+        description: genre
+        schema:
+          type: string
+      - name: name
+        required: false
+        in: query
+        description: name
+        schema:
+          type: string
+      - name: year
+        required: false
+        in: query
+        description: year
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TitlesRead'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createTitle
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Titles'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Titles'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Titles'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Titles'
+          description: ''
+      tags:
+      - api
+  /api/v1/titles/{id}/:
+    get:
+      operationId: retrieveTitle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this title.
+        schema:
+          type: string
+      - name: genre
+        required: false
+        in: query
+        description: genre
+        schema:
+          type: string
+      - name: name
+        required: false
+        in: query
+        description: name
+        schema:
+          type: string
+      - name: year
+        required: false
+        in: query
+        description: year
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TitlesRead'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateTitle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this title.
+        schema:
+          type: string
+      - name: genre
+        required: false
+        in: query
+        description: genre
+        schema:
+          type: string
+      - name: name
+        required: false
+        in: query
+        description: name
+        schema:
+          type: string
+      - name: year
+        required: false
+        in: query
+        description: year
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Titles'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Titles'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Titles'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Titles'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateTitle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this title.
+        schema:
+          type: string
+      - name: genre
+        required: false
+        in: query
+        description: genre
+        schema:
+          type: string
+      - name: name
+        required: false
+        in: query
+        description: name
+        schema:
+          type: string
+      - name: year
+        required: false
+        in: query
+        description: year
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Titles'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Titles'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Titles'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Titles'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyTitle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this title.
+        schema:
+          type: string
+      - name: genre
+        required: false
+        in: query
+        description: genre
+        schema:
+          type: string
+      - name: name
+        required: false
+        in: query
+        description: name
+        schema:
+          type: string
+      - name: year
+        required: false
+        in: query
+        description: year
+        schema:
+          type: string
+      - name: category
+        required: false
+        in: query
+        description: category
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/genres/:
+    get:
+      operationId: listGenres
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Genre'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createGenre
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Genre'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Genre'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Genre'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Genre'
+          description: ''
+      tags:
+      - api
+  /api/v1/titles/{title_id}/reviews/:
+    get:
+      operationId: listReviews
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=400&limit=100
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?offset=200&limit=100
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Reviews'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createReviews
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reviews'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reviews'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reviews'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reviews'
+          description: ''
+      tags:
+      - api
+  /api/v1/titles/{title_id}/reviews/{id}/:
+    get:
+      operationId: retrieveReviews
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reviews'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateReviews
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reviews'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reviews'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reviews'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reviews'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateReviews
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reviews'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reviews'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reviews'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reviews'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyReviews
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/titles/{title_id}/reviews/{review_id}/comments/:
+    get:
+      operationId: listComments
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: review_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Comments'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createComments
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: review_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comments'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Comments'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Comments'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comments'
+          description: ''
+      tags:
+      - api
+  /api/v1/titles/{title_id}/reviews/{review_id}/comments/{id}/:
+    get:
+      operationId: retrieveComments
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: review_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comments'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateComments
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: review_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comments'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Comments'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Comments'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comments'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateComments
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: review_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comments'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Comments'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Comments'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comments'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyComments
+      description: ''
+      parameters:
+      - name: title_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: review_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/auth/signup/:
+    post:
+      operationId: createsignup
+      description: "\u0424\u0443\u043D\u043A\u0446\u0438\u044F \u0440\u0435\u0433\u0438\
+        \u0441\u0442\u0440\u0430\u0446\u0438\u0438 \u043D\u043E\u0432\u044B\u0445\
+        \ \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\
+        \u0439"
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+  /api/v1/auth/token/:
+    post:
+      operationId: createcreate_token
+      description: "\u0424\u043E\u0440\u043C\u0438\u0440\u043E\u0432\u0430\u043D\u0438\
+        \u044F \u0442\u043E\u043A\u0435\u043D\u0430 \u0434\u043B\u044F \u0434\u043E\
+        \u0441\u0442\u0443\u043F\u0430 \u043A \u0444\u0443\u043D\u043A\u0446\u0438\
+        \u044F\u043C \u0410\u041F\u0418."
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+  /api/v1/auth/code/:
+    post:
+      operationId: createcreate_confirmation_code
+      description: "\u0424\u043E\u0440\u043C\u0438\u0440\u043E\u0432\u0430\u043D\u0438\
+        \u0435 \u043A\u043E\u0434\u0430 \u0434\u043B\u044F \u043F\u043E\u043B\u0443\
+        \u0447\u0435\u043D\u0438\u044F \u0442\u043E\u043A\u0435\u043D\u0430.\n\u0415\
+        \u0441\u043B\u0438 \u0443\u0442\u0435\u0440\u044F\u043D \u043A\u043E\u0434\
+        \ \u043F\u043E\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043D\u0438\
+        \u044F, \u043E\u0442\u043F\u0440\u0430\u0432\u044C\u0442\u0435\n\u0438\u043C\
+        \u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F\
+        \ \u0438 \u0430\u0434\u0440\u0435\u0441 \u044D\u043B\u0435\u043A\u0442\u0440\
+        \u043E\u043D\u043D\u043E\u0439 \u043F\u043E\u0447\u0442\u044B.\n\u043F\u043E\
+        \u043B\u0443\u0447\u0438\u0442\u0435 \u043A\u043E\u0434 \u043F\u043E\u0434\
+        \u0432\u0435\u0440\u0436\u0434\u0435\u043D\u0438\u044F \u0441\u043D\u043E\u0432\
+        \u0430."
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - api
+  /api/v1/categories/{slug}/:
+    delete:
+      operationId: destroyCategories
+      description: ''
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/genres/{slug}/:
+    delete:
+      operationId: destroyGenre
+      description: ''
+      parameters:
+      - name: slug
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    AdminUser:
+      type: object
+      properties:
+        username:
+          type: string
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 30
+        last_name:
+          type: string
+          maxLength: 150
+        bio:
+          type: string
+          nullable: true
+        role:
+          enum:
+          - user
+          - moderator
+          - admin
+          type: string
+      required:
+      - username
+      - email
+    Categories:
+      type: object
+      properties:
+        name:
+          type: string
+          description: "\u0414\u0430\u0439\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\
+            \u043D\u0438\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438"
+          maxLength: 50
+        slug:
+          type: string
+          maxLength: 50
+          pattern: ^[-a-zA-Z0-9_]+$
+      required:
+      - name
+      - slug
+    TitlesRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        year:
+          type: integer
+          maximum: 2023
+          minimum: 0
+        genre:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: "\u0414\u0430\u0439\u0442\u0435 \u043D\u0430\u0437\u0432\
+                  \u0430\u043D\u0438\u0435 \u0436\u0430\u043D\u0440\u0443"
+                maxLength: 30
+              slug:
+                type: string
+                maxLength: 50
+                pattern: ^[-a-zA-Z0-9_]+$
+            required:
+            - name
+            - slug
+          readOnly: true
+        category:
+          type: object
+          properties:
+            name:
+              type: string
+              description: "\u0414\u0430\u0439\u0442\u0435 \u043D\u0430\u0437\u0432\
+                \u0430\u043D\u0438\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\
+                \u0438\u0438"
+              maxLength: 50
+            slug:
+              type: string
+              maxLength: 50
+              pattern: ^[-a-zA-Z0-9_]+$
+          required:
+          - name
+          - slug
+          readOnly: true
+        description:
+          type: string
+        rating:
+          type: integer
+          readOnly: true
+      required:
+      - name
+      - year
+      - description
+    Genre:
+      type: object
+      properties:
+        name:
+          type: string
+          description: "\u0414\u0430\u0439\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\
+            \u043D\u0438\u0435 \u0436\u0430\u043D\u0440\u0443"
+          maxLength: 30
+        slug:
+          type: string
+          maxLength: 50
+          pattern: ^[-a-zA-Z0-9_]+$
+      required:
+      - name
+      - slug
+    Reviews:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        author:
+          type: string
+          readOnly: true
+        text:
+          type: string
+        pub_date:
+          type: string
+          format: date-time
+          readOnly: true
+        score:
+          type: integer
+          maximum: 10
+          minimum: 1
+      required:
+      - text
+      - score
+    Comments:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        text:
+          type: string
+        author:
+          type: string
+          readOnly: true
+        reviews:
+          type: string
+          readOnly: true
+        pub_date:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - text
+    Titles:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        year:
+          type: integer
+          maximum: 2023
+          minimum: 0
+        genre:
+          type: array
+          items:
+            type: string
+        category:
+          type: string
+        description:
+          type: string
+      required:
+      - name
+      - year
+      - genre
+      - category
+      - description
